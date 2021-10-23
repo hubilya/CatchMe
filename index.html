@@ -12,6 +12,59 @@
     <div class="container center">
 <button id="CLOCK">ClickME</button>
     </div>
-<script src="../catcher/script.js"></script>
+ <style>
+  
+.container{
+    width:100%;
+    height:100%;
+    margin-top:25%;
+    text-align:center;
+}
+   
+button{
+    width:100px;
+    height:100px;
+}
+    @media (max-width:320px){
+      .container{
+          margin-top:75%;
+      }   
+}
+ </style>
+<script>
+ colors = new Array("yellow","red","orange","green","blue","brown","purple","gray","yellow","aqua","black","pink","white","blue","red")
+
+colorIndex = 0
+
+function changeColor() {
+ document.bgColor = colors[colorIndex]
+ colorIndex = (colorIndex + 1) % colors.length
+}
+
+function startColorChange() {
+ setInterval("changeColor()",400)
+}
+function load() {
+        alert("Click when YELLOW appears!");
+      }
+window.onload = load()
+window.onload = startColorChange
+
+
+var button = document.getElementById('CLOCK');
+var x = 0;
+
+button.addEventListener('click', function() {
+
+
+    if (document.bgColor == "yellow") {
+        alert("WEELL DOOOOOOOONE!")
+    }
+    else{
+        alert("MISSED((( TRY AGAIN!")
+    }
+
+});
+ </script>
  </body>
 </html>
