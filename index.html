@@ -32,13 +32,20 @@ button{
 }
  </style>
 <script>
- colors = new Array("yellow","red","orange","green","blue","brown","purple","gray","yellow","aqua","black","pink","white","blue","red")
-
+colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
 colorIndex = 0
-
+ 
+// функция в которой массив цветов перебирается случайным образом
 function changeColor() {
  document.bgColor = colors[colorIndex]
- colorIndex = (colorIndex + 1) % colors.length
+ var j, temp;
+	for(var i = colors.length - 1; i > 0; i--){
+		j = Math.floor(Math.random()*(i + 1));
+		temp = colors[j];
+		colors[j] = colors[i];
+		colors[i] = temp;
+	}
+	return colors;
 }
 
 function startColorChange() {
