@@ -4,13 +4,16 @@
   <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>catchIt</title>
+	  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="../catcher/style.css" />
      
  </head>
 <body>
 
     <div class="container">
-<button id="CLOCK">ClickME</button>
+<button id="CLOCK"><text>ClickME</text></button>
     </div>
  <style>
 body {
@@ -22,18 +25,58 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
+}
+text{
+    font-family: 'Kaushan Script';
+    font-size: 22px;
 }
 
-
 button{
-    
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
 }
     @media (max-width:320px){
      
 }
+button {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+button:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}	 
  </style>
 <script>
 colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
