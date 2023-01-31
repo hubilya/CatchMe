@@ -104,7 +104,8 @@
             let lastPrice = null;
             var xmlhttp = new XMLHttpRequest();
             ws.onmessage = (event) => {
-                let stockObject = JSON.parse(event.data);               stockPriceElement.innerText = stockObject.p;
+                let stockObject = JSON.parse(event.data);               
+		stockPriceElement.innerText = parseFloat(stockObject.p).toFixed(2);
                 lastPrice = price;
             };
     
