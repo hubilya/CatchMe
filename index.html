@@ -3,131 +3,153 @@
  <head>
   <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<title>catchIt</title>
+  	 <title>catchIt</title>
 	  <link rel="preconnect" href="https://fonts.googleapis.com">
 	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-              <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
                 <link rel="stylesheet" type="text/css" href="../catcher/style.css" />
      
  </head>
    <body>
     <div class="container">
       <button id="CLOCK"><text>ClickME</text></button>
+        <h2>SCORE :</h2>
+          <h2 id="result">0</h2>   
     </div>
-    
-        
-          <h2>SCORE : </h2>
-           <h2 id="result">0</h2>
+          <h3>BTC Price Currently</h3>
+           <h4 id="data"></h4>
+          
         
      <style>
-       body {
-         margin: 0;
-         padding: 0;
-         height: 100vh;
+       .container {
          display: flex;
          justify-content: center;
          align-items:center;
-         
-           }
-         
-         h2{
-             font-size: 20px;
          }
-       
-       text{
+         button {
+             position:absolute;
+             top:40%;
+         }
+         h2 {
+             font-size: 20px;
+             font-family: 'Kaushan Script';
+             
+         }
+         h3{
+             font-family: 'Kaushan Script';
+             position: absolute;
+             bottom: 0;
+         }
+         h4{
+             font-family: 'Kaushan Script';
+             position: absolute;
+             bottom: 0;
+             right:2%;
+         }
+         text {
          font-family: 'Kaushan Script';
          font-size: 22px;
-       }
-
-       button{
+         }
+         button {
          width:150px;
          height:150px;
-       }
+         }
          @media (max-width:320px){
          }
-       button{
-	  align-self: center;
-	  background-color: #fff;
-	  background-image: none;
-	  background-position: 0 90%;
-	  background-repeat: repeat no-repeat;
-	  background-size: 4px 3px;
-	  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-	  border-style: solid;
-	  border-width: 2px;
-	  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-	  box-sizing: border-box;
-	  color: #41403e;
-	  cursor: pointer;
-	  display: inline-block;
-	  font-family: Neucha, sans-serif;
-	  font-size: 1rem;
-	  line-height: 23px;
-	  outline: none;
-	  padding: .75rem;
-	  text-decoration: none;
-	  transition: all 235ms ease-in-out;
-	  border-bottom-left-radius: 15px 255px;
-	  border-bottom-right-radius: 225px 15px;
-	  border-top-left-radius: 255px 15px;
-	  border-top-right-radius: 15px 225px;
-	  user-select: none;
-	  -webkit-user-select: none;
-	  touch-action: manipulation;
-	}
+          button {
+	      align-self: center;
+          background-color: #fff;
+          background-image: none;
+          background-position: 0 90%;
+          background-repeat: repeat no-repeat;
+          background-size: 4px 3px;
+          border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+          border-style: solid;
+          border-width: 2px;
+          box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+          box-sizing: border-box;
+          color: #41403e;
+          cursor: pointer;
+          display: inline-block;
+          font-family: Neucha, sans-serif;
+          font-size: 1rem;
+          line-height: 23px;
+          outline: none;
+          padding: .75rem;
+          text-decoration: none;
+          transition: all 235ms ease-in-out;
+          border-bottom-left-radius: 15px 255px;
+          border-bottom-right-radius: 225px 15px;
+          border-top-left-radius: 255px 15px;
+          border-top-right-radius: 15px 225px;
+          user-select:contain;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+	      }
 
-button:hover {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
-}
+        button:hover {
+          box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+          transform: translate3d(0, 2px, 0);
+        }
 
-button:focus {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-}	 
+        button:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }	 
  
- </style>
-<script>
-colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
-colorIndex = 0
- 
-// функция в которой массив цветов перебирается случайным образом
-function changeColor() {
- document.bgColor = colors[colorIndex]
- var j, temp;
-	for(var i = colors.length - 1; i > 0; i--){
-		j = Math.floor(Math.random()*(i + 1));
-		temp = colors[j];
-		colors[j] = colors[i];
-		colors[i] = temp;
-	}
-	return colors;
-}
+     </style>
+     
+        <script>
+            let ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
+            let stockPriceElement = document.getElementById('data');
+            let lastPrice = null;
+            var xmlhttp = new XMLHttpRequest();
+            ws.onmessage = (event) => {
+                let stockObject = JSON.parse(event.data);               stockPriceElement.innerText = stockObject.p;
+                lastPrice = price;
+            };
+    
+    
+            colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
+            colorIndex = 0
 
-function startColorChange() {
- setInterval("changeColor()",450)
-}
-function load() {
-        alert("Click when YELLOW appears!");
-      }
-window.onload = load()
-window.onload = startColorChange
+            // функция в которой массив цветов перебирается случайным образом
+            function changeColor() {
+             document.bgColor = colors[colorIndex]
+             var j, temp;
+                for(var i = colors.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random()*(i + 1));
+                    temp = colors[j];
+                    colors[j] = colors[i];
+                    colors[i] = temp;
+                }
+                return colors;
+            }
+
+            function startColorChange() {
+             setInterval("changeColor()",500)
+            }
+            function load() {
+                    alert("Click when YELLOW appears!");
+            }
+            window.onload = load()
+            window.onload = startColorChange
 
 
-var button = document.getElementById('CLOCK');
+            var button = document.getElementById('CLOCK');
 
-var score = 0;
-button.addEventListener('click', function() {
+            var score = 0;
+            button.addEventListener('click', function() {
 
-    if (document.bgColor == "yellow") {
-    document.getElementById("result").innerHTML = ++score;
-        alert("WEELL DOOOOOOOONE!");
-    }
-    else{
-    document.getElementById("result").innerHTML =score=0;
-        alert("So Sorry you're missed");
-    }
-
-});
- </script>
+                if (document.bgColor == "yellow") {
+                document.getElementById("result").innerHTML = ++score;
+                    alert("WEELL DOOOOOOOONE!");
+                }
+                else {
+                document.getElementById("result").innerHTML =score=0;
+                    alert("So Sorry you're missed");
+                }
+            });
+    
+        </script>
  </body>
 </html>
