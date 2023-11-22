@@ -111,8 +111,8 @@
                 lastPrice = price;
             };
     
-   let "yellow" = kit;
-            colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
+   
+            colors = new Array(kit,"red","orange","green","blue","purple","gray",kit,"aqua","black","pink","white")
             colorIndex = 0
 
             // функция в которой массив цветов перебирается случайным образом
@@ -143,7 +143,7 @@
             var score = 0;
             button.addEventListener('click', function() {
 
-                if (document.bgColor == "yellow") {
+                if (document.bgColor == kit) {
                 document.getElementById("result").innerHTML = ++score;
                     alert("WEELL DOOOOOOOONE!");
                 }
