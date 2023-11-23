@@ -110,12 +110,15 @@
             };
     
    
-            colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
-            colorIndex = 0
+           /*colors = new Array("yellow","red","orange","green","blue","purple","gray","yellow","aqua","black","pink","white")
+            colorIndex = 0*/
+		var doc = document.getElementById("background");
+var color = ["black", "blue", "brown", "green","yellow"];
+var i = 0;
 
             // функция в которой массив цветов перебирается случайным образом
             function changeColor() {
-             document.bgColor = colors[colorIndex]
+             /*document.bgColor = colors[colorIndex]
              var j, temp;
                 for(var i = colors.length - 1; i > 0; i--) {
                     j = Math.floor(Math.random()*(i + 1));
@@ -123,7 +126,13 @@
                     colors[j] = colors[i];
                     colors[i] = temp;
                 }
-                return colors;
+                return colors;*/
+		    doc.style.backgroundColor = color[i];
+  i++;
+  
+  if(i > color.length - 1) {
+    i = 0;
+  }
             }
 
             function startColorChange() {
